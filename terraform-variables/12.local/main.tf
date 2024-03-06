@@ -55,6 +55,7 @@ resource "aws_instance" "backend_server" {
  ami           = "ami-07355fe79b4937cf"
  instance_type = var.instance_type
 
+ #syntax: ${condition ? true_value : false_value}
  count         = var.instance_type == "t2.micro" ? 3 : 1
 
  tags          = {
