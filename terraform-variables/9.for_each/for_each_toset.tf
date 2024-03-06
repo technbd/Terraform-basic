@@ -31,11 +31,14 @@ resource "aws_instance" "to_set" {
 }
 
 #outputs.tf 
-output "instance_names" {
+output "instance_id" {
   value = [ for instance in var.toset_instances: aws_instance.to_set[instance].id ]
 }
 
-# output "instance_names" {
+# output "instance_id" {
 #   value = [ for instance in aws_instance.to_set: instance.id ]
 # }
 
+output "instance_names" {
+  value = [ for instance in aws_instance.to_set: instance.tags.Environment ]
+}
